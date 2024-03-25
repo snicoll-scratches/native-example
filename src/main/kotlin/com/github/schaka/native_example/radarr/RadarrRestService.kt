@@ -1,8 +1,8 @@
 package com.github.schaka.native_example.radarr
 
 import com.github.schaka.native_example.ServarrService
-import jakarta.annotation.PostConstruct
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.InitializingBean
 import org.springframework.cache.annotation.Cacheable
 import org.springframework.stereotype.Service
 
@@ -12,7 +12,7 @@ class RadarrRestService(
     val radarrProperties: RadarrProperties,
     var counter: Int = 0
 
-) : ServarrService {
+) : ServarrService, InitializingBean {
 
     companion object {
         private val log = LoggerFactory.getLogger(this::class.java.enclosingClass)
@@ -20,8 +20,7 @@ class RadarrRestService(
         const val CACHE_NAME = "radarr-cache"
     }
 
-    @PostConstruct
-    fun doSomething() {
+    override fun afterPropertiesSet() {
         log.info("PostConstruct called from {}", this)
     }
 
