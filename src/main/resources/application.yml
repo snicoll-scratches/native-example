@@ -1,0 +1,19 @@
+spring:
+  cache:
+    type: caffeine
+    caffeine:
+      spec: expireAfterAccess=30m
+
+  threads:
+    virtual:
+      enabled: true
+
+clients:
+  radarr:
+    enabled: true
+    url: "http://radarr:7878"
+    api-key: "radarr-key"
+  sonarr:
+    enabled: true
+    url: "http://sonarr:7878"
+    api-key: "sonarr-key"
